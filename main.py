@@ -5,7 +5,7 @@ import html
 
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
-THRESHOLD = 0.01
+THRESHOLD = 0.05
 
 params = {
 	"function": "TIME_SERIES_DAILY_ADJUSTED",
@@ -58,15 +58,15 @@ else:
 				text += f"{article['url']}\n"
 				text += f"----------------------\n"
 
-			text = text.encode('utf-8')
-			connection1 = smtplib.SMTP(os.environ.get("EMAIL_TEST_SMTP"), os.environ.get("EMAIL_TEST_PORT"))
-			connection1.starttls()
-			connection1.login(user=os.environ.get("EMAIL_TEST_NAME"), password=os.environ.get("EMAIL_TEST_PASSWORD"))
-			connection1.sendmail(
-				from_addr=os.environ.get("EMAIL_TEST_NAME"),
-				to_addrs=os.environ.get("EMAIL_RECEPIENT"),
-				msg=text)
-			connection1.close()
+	text = text.encode('utf-8')
+	connection1 = smtplib.SMTP(os.environ.get("EMAIL_TEST_SMTP"), os.environ.get("EMAIL_TEST_PORT"))
+	connection1.starttls()
+	connection1.login(user=os.environ.get("EMAIL_TEST_NAME"), password=os.environ.get("EMAIL_TEST_PASSWORD"))
+	connection1.sendmail(
+		from_addr=os.environ.get("EMAIL_TEST_NAME"),
+		to_addrs=os.environ.get("EMAIL_RECEPIENT"),
+		msg=text)
+	connection1.close()
 
 
 
